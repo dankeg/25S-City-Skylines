@@ -55,6 +55,23 @@ def AdminPageNav():
         "pages/21_ML_Model_Mgmt.py", label="ML Model Management", icon="🏢"
     )
 
+### ------------------------- Urban Planner Role -------------------------
+def UrbanPlannerNav():
+    st.sidebar.page_link(
+        "pages/urbanPlannerHome.py", label="Urban Planner Home", icon="🏙️"
+    )
+    st.sidebar.page_link(
+        "pages/compareProjects.py", label="Compare Projects", icon="📊"
+    )
+    st.sidebar.page_link(
+        "pages/addProject.py", label="Add a Project", icon="➕"
+    )
+    st.sidebar.page_link(
+        "pages/populationExpansion.py", label="Population Expansion", icon="🌍"
+    )
+    st.sidebar.page_link(
+        "pages/urbanPlannerMap.py", label="Urban Planner Map", icon="🗺️"
+    )
 
 # --------------------------------Links Function -----------------------------------------------
 def SideBarLinks(show_home=False):
@@ -63,7 +80,7 @@ def SideBarLinks(show_home=False):
     """
 
     # add a logo to the sidebar always
-    st.sidebar.image("assets/logo.png", width=150)
+    st.sidebar.image("assets/citySkylines.jpeg", width=150)
 
     # If there is no logged in user, redirect to the Home (Landing) page
     if "authenticated" not in st.session_state:
@@ -92,6 +109,10 @@ def SideBarLinks(show_home=False):
         # If the user is an administrator, give them access to the administrator pages
         if st.session_state["role"] == "administrator":
             AdminPageNav()
+
+        # If the user is an urban planner, give them access to the urban planner pages
+        if st.session_state["role"] == "urbanPlanner":
+            UrbanPlannerNav()    
 
     # Always show the About page at the bottom of the list of links
     AboutPageNav()

@@ -49,7 +49,7 @@ def update_customer():
     cursor = db.get_db().cursor()
     r = cursor.execute(query, data)
     db.get_db().commit()
-    return 'customer updated!'
+    return 'customer updated!'  
 
 #------------------------------------------------------------
 # Get customer detail for customer with particular userID
@@ -81,3 +81,4 @@ def predict_value(var01, var02):
     the_response.status_code = 200
     the_response.mimetype = 'application/json'
     return the_response
+
