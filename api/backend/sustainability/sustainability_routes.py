@@ -13,7 +13,7 @@ sustainability_analyst = Blueprint('sustainability_routes', __name__)
 
 
 #------------------------------------------------------------
-# Get all trucks from the system
+# User Story 4: Get all trucks from the system
 @sustainability_analyst.route('/trucks', methods=['GET'])
 def get_trucks():
 
@@ -28,27 +28,10 @@ def get_trucks():
     the_response.status_code = 200
     return the_response
 
-#------------------------------------------------------------
-# User Story 2: Get EV and Air Quality data from the system
-@sustainability_analyst.route('/ev-air-dashboard', methods=['GET'])
-def get_ev_air_data():
-    cursor = db.get_db().cursor()
-
-    cursor.execute('''
-        SELECT aq.AQI, aq.pollutant_type, aq.location_id, aq.station_id,
-         ev.usage_level, ev.energy_consumption, ev.timestamp
-        FROM CityPlanner.Air_Quality_Metrics aq
-        JOIN CityPlanner.EV_Infrastructure ev ON aq.station_id = ev.station_id
-        ORDER BY aq.AQI DESC
-    ''')
-    data = cursor.fetchall()
-    response = make_response(jsonify(data))
-    response.status_code = 200
-    return response
 
 #------------------------------------------------------------
-# User Story 1: Get all CO2 Emissions data along with Building emissions data 
-# AND Add new building energy level data 
+# User Story 1: GET all CO2 Emissions data along with Building emissions data 
+# AND POST new building energy consumption data 
 @sustainability_analyst.route('/co2-building-emissions', methods=['GET', 'POST'])
 def handle_co2_building_emissions():
     cursor = db.get_db().cursor()
@@ -87,3 +70,52 @@ def handle_co2_building_emissions():
         return response
 
 #-----------------------------------------------------------
+# User Story 2: GET EV and Air Quality data from the system
+@sustainability_analyst.route('/ev-air-dashboard', methods=['GET'])
+def get_ev_air_data():
+    cursor = db.get_db().cursor()
+
+    cursor.execute('''
+        SELECT aq.AQI, aq.pollutant_type, aq.location_id, aq.station_id,
+         ev.usage_level, ev.energy_consumption, ev.timestamp
+        FROM CityPlanner.Air_Quality_Metrics aq
+        JOIN CityPlanner.EV_Infrastructure ev ON aq.station_id = ev.station_id
+        ORDER BY aq.AQI DESC
+    ''')
+    data = cursor.fetchall()
+    response = make_response(jsonify(data))
+    response.status_code = 200
+    return response
+
+    
+#-----------------------------------------------------------
+# User Story 6: GET all sensors data and their status
+@sustainability_analyst.route('/water-sensors', methods=['GET'])
+def get_water_sensors():
+    cursor = db.get_db().cursor()
+    cursor.execute('''
+        SELECT sensor_id, parameter, location_id, building_id, status, timestamp
+        FROM CityPlanner.Sensor_Data
+        ORDER BY timestamp DESC
+    ''')
+    data = cursor.fetchall()
+    return jsonify(data), 200
+
+
+# PUT to update status of a sensor
+@sustainability_analyst.route('/water-sensor-status', methods=['PUT'])
+def update_water_sensor_status():
+    cursor = db.get_db().cursor()
+    data = request.get_json()
+
+    sensor_id = data.get('sensor_id')
+    new_status = data.get('status')
+
+    cursor.execute('''
+        UPDATE CityPlanner.Sensor_Data
+        SET status = %s
+        WHERE sensor_id = %s
+    ''', (new_status, sensor_id))
+
+    db.get_db().commit()
+    return jsonify({"message": "Sensor status updated successfully"}), 200

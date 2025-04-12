@@ -42,7 +42,8 @@ with st.echo(code_location='above'):
         col1, col2 = st.columns(2)
 
         with col1:
-            source = st.selectbox("Source", ["traffic_sensor", "building_meter"])
+            source = st.selectbox("Source", ["Commercial Building", "Building Meter", "Deforestation", "Energy Production",
+            "Land Use Changes"])
             emission_level = st.number_input("Emission Level (kg)", min_value=0.0, step=0.1)
             location_id = st.number_input("Location ID", min_value=1, step=1)
 

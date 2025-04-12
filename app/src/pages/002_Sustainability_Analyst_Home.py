@@ -23,3 +23,8 @@ if st.button('Add New Building Energy Consumption Point to CO2 Emissions Data',
              type='primary',
              use_container_width=True):
   st.switch_page('pages/002b_Add_Building_CO2.py')
+
+if st.button('Update Water Quality Sensor Status', 
+             type='primary',
+             use_container_width=True):
+  st.switch_page('pages/002c_Update_Sensor_Status.py')
