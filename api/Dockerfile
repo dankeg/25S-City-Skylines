@@ -10,4 +10,5 @@ COPY . .
 EXPOSE 4000
 
 CMD [ "python", "backend_app.py"]
+# when container spins up, it will run CMD command
 

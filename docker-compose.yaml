@@ -4,6 +4,8 @@ services:
     container_name: web-app
     hostname: web-app
     volumes: ["./app/src:/appcode"]
+    # volumes: takes app/src and maps it to inside the container
+    # to be a folder called appcode 
     ports:
       - 8501:8501
 
@@ -12,6 +14,7 @@ services:
     container_name: web-api
     hostname: web-api
     volumes: ["./api:/apicode"]
+    # mapping full api folder to apicode
     ports:
       - 4000:4000
 
@@ -23,5 +26,12 @@ services:
     hostname: db
     volumes:
       - ./database-files:/docker-entrypoint-initdb.d/:ro
+      # ro -- means read only, can't change any of the file content
     ports:
       - 3200:3306
+
+      # the mysql container we're using will look inside whatever folder that is mapped into 
+      # the container as docker-entrypoint-initdb.d
+      # mapping of what is in 'database-files' into docker-entrypoint-initdb.d
+      # msql knows when the container is created it will go to that folder and execute every sql file in there
+      # in ALPHABETICAL order
