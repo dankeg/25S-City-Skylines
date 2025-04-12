@@ -19,7 +19,7 @@ if st.button('View EV Usage Alongside Air Quality Metrics',
              use_container_width=True):
   st.switch_page('pages/002a_EV_Air_Quality_Viz.py')
 
-if st.button('View World Map Demo', 
+if st.button('Add New Building Energy Consumption Point to CO2 Emissions Data', 
              type='primary',
              use_container_width=True):
-  st.switch_page('pages/02_Map_Demo.py')
+  st.switch_page('pages/002b_Add_Building_CO2.py')
