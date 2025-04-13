@@ -15,20 +15,23 @@ def AboutPageNav():
 
 
 #### ------------------------ Role of Sustainalibility Analyst ------------------------
-def PolStratAdvHomeNav():
+def SustainabilityHomeNav():
     st.sidebar.page_link(
-        "pages/002_Sustainability_Analyst_Home.py", label="Sustainability Analyst Home", icon="👤"
-    )
+        "pages/002_Sustainability_Analyst_Home.py", label="Analyst Home", icon="🌱")
 
 
-def WorldBankVizNav():
+def EVStationVizNav():
     st.sidebar.page_link(
-        "pages/002a_EV_Air_Quality_Viz.py", label="EV Station Usage and Air Quality Visualization", icon="🏦"
-    )
+        "pages/002a_EV_Air_Quality_Viz.py", label="EV & Air Quality Viz", icon="🚗")
 
 
-def MapDemoNav():
-    st.sidebar.page_link("pages/002b_Add_Building_CO2.py", label="Add Buildings Emissions Data", icon="🗺️")
+def AddBuildingCO2Nav():
+    st.sidebar.page_link("pages/002b_Add_Building_CO2.py", label="Add Emissions Data", icon="🏭")
+
+
+
+def UpdateWaterSensorNav():
+    st.sidebar.page_link("pages/002c_Update_Sensor_Status.py", label="Update Sensor Status", icon="💧")
 
 
 ## ------------------------ Examples for Role of usaid_worker ------------------------
@@ -78,10 +81,11 @@ def SideBarLinks(show_home=False):
     if st.session_state["authenticated"]:
 
         # Show World Bank Link and Map Demo Link if the user is a political strategy advisor role.
-        if st.session_state["role"] == "pol_strat_advisor":
-            PolStratAdvHomeNav()
-            WorldBankVizNav()
-            MapDemoNav()
+        if st.session_state["role"] == "sustainability_analyst":
+            SustainabilityHomeNav()
+            EVStationVizNav()
+            AddBuildingCO2Nav()
+            UpdateWaterSensorNav()
 
         # If the user role is usaid worker, show the Api Testing page
         if st.session_state["role"] == "usaid_worker":
