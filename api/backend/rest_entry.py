@@ -8,19 +8,20 @@ from backend.maintenancelogs.allactive_routes import allactive
 from backend.maintenancelogs.updatinglog_routes import updatinglog
 from backend.maintenancelogs.deletetype_routes import deletecompleted
 from backend.simple.simple_routes import simple_routes
+from backend.urbanPlanner.urbanPlanner import urbanPlanner_routes
 import os
 from dotenv import load_dotenv
 
 def create_app():
     app = Flask(__name__)
-
+    
     # Load environment variables
     # This function reads all the values from inside
     # the .env file (in the parent folder) so they
     # are available in this file.  See the MySQL setup 
     # commands below to see how they're being used.
     load_dotenv()
-
+    
     # secret key that will be used for securely signing the session 
     # cookie and can be used for any other security related needs by 
     # extensions or your application
@@ -49,7 +50,7 @@ def create_app():
     app.register_blueprint(customers,   url_prefix='/c')
     app.register_blueprint(products,    url_prefix='/p')
     app.register_blueprint(sustainability_analyst,    url_prefix='/s')
-    # BLUEPRINT --- collection of related routes in Flask
+    app.register_blueprint(urbanPlanner_routes)
 
     # Don't forget to return the app object
     return app
