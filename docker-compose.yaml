@@ -5,6 +5,7 @@ services:
     hostname: web-app
     volumes: ["./app/src:/appcode"]
     ports:
+    # local/host port :container port
       - 8501:8501
 
   api:
@@ -18,10 +19,11 @@ services:
   db:
     env_file:
       - ./api/.env
-    image: mysql:9
+    image: mysql:latest
     container_name: mysql_db
     hostname: db
     volumes:
       - ./database-files:/docker-entrypoint-initdb.d/:ro
     ports:
       - 3200:3306
+    

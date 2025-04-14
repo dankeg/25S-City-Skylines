@@ -38,7 +38,7 @@ def ApiTestNav():
 
 def PredictionNav():
     st.sidebar.page_link(
-        "pages/11_Prediction.py", label="Regression Prediction", icon="📈"
+        "pages/11_Prediction_worker.py", label="Regression Prediction", icon="📈"
     )
 
 
