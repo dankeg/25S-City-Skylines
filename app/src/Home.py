@@ -58,4 +58,11 @@ if st.button("Act as Jane, a Sustainability Analyst",
     st.switch_page('pages/002_Sustainability_Analyst_Home.py')
 
 
+if st.button('Act as Cobb, an Urban Planner', 
+            type = 'primary', 
+            use_container_width=True):
+    st.session_state['authenticated'] = True
+    st.session_state['role'] = 'urbanPlanner'
+    st.session_state['first_name'] = 'Cobb'
+    st.switch_page('pages/urbanPlannerHome.py')
 

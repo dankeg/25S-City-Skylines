@@ -4,6 +4,7 @@ from backend.db_connection import db
 # from backend.customers.customer_routes import customers
 # from backend.products.products_routes import products
 from backend.sustainability.sustainability_routes import sustainability_analyst
+from backend.urbanPlanner.urbanPlanner import urbanPlanner_routes
 # from backend.simple.simple_routes import simple_routes
 import os
 from dotenv import load_dotenv
@@ -43,6 +44,7 @@ def create_app():
     # app.register_blueprint(customers,   url_prefix='/c')
     # app.register_blueprint(products,    url_prefix='/p')
     app.register_blueprint(sustainability_analyst,    url_prefix='/s')
+    app.register_blueprint(urbanPlanner_routes)
     # BLUEPRINT --- collection of related routes in Flask
 
     # Don't forget to return the app object

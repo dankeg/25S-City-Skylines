@@ -165,7 +165,7 @@ CREATE TABLE Department (
 );
 
 CREATE TABLE Project (
-    project_id INT PRIMARY KEY NOT NULL,
+    project_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     name VARCHAR(200) NOT NULL,
     status ENUM('proposed', 'inProgress', 'completed') NOT NULL,
     budget DECIMAL(15, 2),
@@ -1429,10 +1429,7 @@ INSERT INTO `Issue_Log` (`issue_id`, `issue_type`, `crew_id`, `priority`, `statu
 ('100', 'Streetlights not working', '5', 'High', 'Open', '66', 'Insufficient street lighting in residential areas leading to safety concerns.', 'Medium Impact', '50');
 
 
-
-
-
-INSERT INTO `Location` (`location_id`, `longitude`, `latitude`, `region_id`) VALUES
+INSERT INTO `Location` (location_id, longitude, latitude, region_id) VALUES
 ('1', '-86.1595', '39.7851', '11'),
 ('2', '-74.3048', '41.0114', '21'),
 ('3', '-78.9383', '40.3522', '16'),
@@ -1533,9 +1530,6 @@ INSERT INTO `Location` (`location_id`, `longitude`, `latitude`, `region_id`) VAL
 ('98', '-106.3', '31.6948', '17'),
 ('99', '-89.606', '39.7495', '12'),
 ('100', '-122.3348', '37.3811', '22');
-
-
-
 
 
 INSERT INTO `Maintenance_Log` (`log_id`, `completed_date`, `description`, `issue_id`) VALUES
