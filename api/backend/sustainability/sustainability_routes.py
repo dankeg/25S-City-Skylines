@@ -4,30 +4,11 @@ from flask import jsonify
 from flask import make_response
 from flask import current_app
 from backend.db_connection import db
-from backend.ml_models.model01 import predict
 
 #------------------------------------------------------------
 # Create a new Blueprint object, which is a collection of 
 # routes.
 sustainability_analyst = Blueprint('sustainability_routes', __name__)
-
-
-#------------------------------------------------------------
-# User Story 4: Get all trucks from the system
-@sustainability_analyst.route('/trucks', methods=['GET'])
-def get_trucks():
-
-    cursor = db.get_db().cursor()
-    cursor.execute('''SELECT truck_id, capacity, route_id
-                      FROM CityPlanner.Truck
-    ''')
-    
-    theData = cursor.fetchall()
-    
-    the_response = make_response(jsonify(theData))
-    the_response.status_code = 200
-    return the_response
-
 
 #------------------------------------------------------------
 # User Story 1: GET all CO2 Emissions data along with Building emissions data 

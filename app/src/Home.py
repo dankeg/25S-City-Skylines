@@ -34,7 +34,7 @@ SideBarLinks(show_home=True)
 
 # set the title of the page and provide a simple prompt. 
 logger.info("Loading the Home page of the app")
-st.title('CS 3200 Sample Semester Project App')
+st.title('City Skylines')
 st.write('\n\n')
 st.write('### HI! As which user would you like to log in?')
 
@@ -56,22 +56,6 @@ if st.button("Act as Jane, a Sustainability Analyst",
     # landing page for this particular user type
     logger.info("Logging in as Sustainability Analyst Persona")
     st.switch_page('pages/002_Sustainability_Analyst_Home.py')
-
-if st.button('Act as Mohammad, an USAID worker', 
-            type = 'primary', 
-            use_container_width=True):
-    st.session_state['authenticated'] = True
-    st.session_state['role'] = 'usaid_worker'
-    st.session_state['first_name'] = 'Mohammad'
-    st.switch_page('pages/10_USAID_Worker_Home.py')
-
-if st.button('Act as System Administrator', 
-            type = 'primary', 
-            use_container_width=True):
-    st.session_state['authenticated'] = True
-    st.session_state['role'] = 'administrator'
-    st.session_state['first_name'] = 'SysAdmin'
-    st.switch_page('pages/20_Admin_Home.py')
 
 
 
