@@ -33,7 +33,7 @@ def on_config_change():
             for col, new_value in changes.items():
                 updated[col] = new_value
             row_dict = updated.to_dict()
-            config_id = row_dict["id"]
+            config_id = row_dict["config_id"]
             requests.put(
                 f"http://web-api:4000/sys/monitoring-config/{config_id}", json=row_dict
             )

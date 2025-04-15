@@ -52,6 +52,22 @@ def UrbanPlannerNav():
         "pages/urbanPlannerMap.py", label="Urban Planner Map", icon="🗺️"
     )
 
+### ------------------------- System Administrator Role -------------------------
+
+def SystemAdminNav():
+    st.sidebar.page_link(
+        "pages/00_Sys_Admin_Home.py", label="System Administrator Home", icon="🏙️"
+    )
+    st.sidebar.page_link(
+        "pages/01_User_Tickets.py", label="Handle User Tickets", icon="📊"
+    )
+    st.sidebar.page_link(
+        "pages/02_Monitor_Incident.py", label="Monitor Server Incidents", icon="➕"
+    )
+    st.sidebar.page_link(
+        "pages/03_User_Metrics.py", label="User Login Metrics", icon="🌍"
+    )
+
 # --------------------------------Links Function -----------------------------------------------
 def SideBarLinks(show_home=False):
     """
@@ -83,6 +99,10 @@ def SideBarLinks(show_home=False):
         # If the user is an urban planner, give them access to the urban planner pages
         if st.session_state["role"] == "urbanPlanner":
             UrbanPlannerNav() 
+
+        if st.session_state["role"] ==  "sys_admin":
+            SystemAdminNav()
+
 
     # Always show the About page at the bottom of the list of links
     AboutPageNav()

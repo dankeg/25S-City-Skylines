@@ -80,7 +80,7 @@ if st.button(
     logger.info("Logging in as USAID Persona")
     st.switch_page("pages/10_USAID_Worker_Home.py")
 
-if st.button("Act as System Administrator", type="primary", use_container_width=True):
+if st.button("Act as Ben, System Administrator", type="primary", use_container_width=True):
     st.session_state["authenticated"] = True
     st.session_state["role"] = "sys_admin"
     st.session_state["first_name"] = "Ben"

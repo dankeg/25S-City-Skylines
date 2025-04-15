@@ -26,8 +26,6 @@ if "original_user_tickets" not in st.session_state:
 def on_modification_callback():
     edited_data = st.session_state.user_tickets
 
-    st.write(edited_data)
-
     if edited_data["edited_rows"]:
         original_data = st.session_state.original_user_tickets
         for row_index, changes in edited_data["edited_rows"].items():
