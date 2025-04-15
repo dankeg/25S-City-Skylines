@@ -61,7 +61,7 @@ def main():
     tooltip = {
         "html": "<b>Project:</b> {name}<br/>"
                 "<b>Status:</b> {status}<br/>"
-                "<b>Budget:</b> ${budget:,.2f}<br/>"
+                # "<b>Budget:</b> ${budget:,.2f}<br/>"
                 "<b>Sustainability Score:</b> {sustainabilityScore}/100<br/>",
         "style": {
             "backgroundColor": "steelblue",
