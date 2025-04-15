@@ -16,6 +16,7 @@ logger = logging.getLogger(__name__)
 import streamlit as st
 from modules.nav import SideBarLinks
 
+
 # streamlit supports reguarl and wide layout (how the controls
 # are organized/displayed on the screen).
 st.set_page_config(layout="wide")
@@ -70,15 +71,13 @@ if st.button('Act as Cobb, an Urban Planner',
     logger.info("Logging in as Urban Planner Persona")
     st.switch_page('pages/urbanPlannerHome.py')
 
-# Placeholder, to be replaced with Simone's content
-if st.button(
-    "Act as Mohammad, an USAID worker", type="primary", use_container_width=True
-):
-    st.session_state["authenticated"] = True
-    st.session_state["role"] = "usaid_worker"
-    st.session_state["first_name"] = "Mohammad"
-    logger.info("Logging in as USAID Persona")
-    st.switch_page("pages/10_USAID_Worker_Home.py")
+if st.button('Act as an Infrastructure Management Supervisor', 
+            type = 'primary', 
+            use_container_width=True):
+    st.session_state['authenticated'] = True
+    st.session_state['role'] = 'InfrastructureSupervisor'
+    st.session_state['first_name'] = 'Luis'
+    st.switch_page('pages/infrastructure_home.py')
 
 if st.button("Act as Ben, System Administrator", type="primary", use_container_width=True):
     st.session_state["authenticated"] = True

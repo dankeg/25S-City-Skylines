@@ -7,6 +7,7 @@ services:
     # volumes: takes app/src and maps it to inside the container
     # to be a folder called appcode 
     ports:
+    # local/host port :container port
       - 8501:8501
 
   api:
@@ -21,7 +22,7 @@ services:
   db:
     env_file:
       - ./api/.env
-    image: mysql:9
+    image: mysql:latest
     container_name: mysql_db
     hostname: db
     volumes:

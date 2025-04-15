@@ -67,6 +67,21 @@ def SystemAdminNav():
     st.sidebar.page_link(
         "pages/03_User_Metrics.py", label="User Login Metrics", icon="🌍"
     )
+    
+### ------------------------- infrastructure managmenst supervisor -------------------------
+def InfrastructureSupervisorNav():
+    st.sidebar.page_link(
+        "pages/infrastructure_home.py", label="Infrastructure Supervisor Home", icon="🛠️"
+    )
+    st.sidebar.page_link(
+        "pages/infrastructure_map.py", label="View Active Work Orders", icon="🗺️"
+    )
+    st.sidebar.page_link(
+        "pages/add_infrastructure.py", label="Logging Work Order", icon="📝"
+    )
+    st.sidebar.page_link(
+        "pages/delete_infrastructure.py", label="Deleting Completed Order", icon="✅"
+    )
 
 # --------------------------------Links Function -----------------------------------------------
 def SideBarLinks(show_home=False):
@@ -75,7 +90,7 @@ def SideBarLinks(show_home=False):
     """
 
     # add a logo to the sidebar always
-    st.sidebar.image("assets/City_Skylines_Logo.png", width=400)
+    st.sidebar.image("assets/citySkylines.jpeg", width=150)
 
     # If there is no logged in user, redirect to the Home (Landing) page
     if "authenticated" not in st.session_state:
@@ -102,6 +117,8 @@ def SideBarLinks(show_home=False):
 
         if st.session_state["role"] ==  "sys_admin":
             SystemAdminNav()
+        if st.session_state["role"] == "InfrastructureSupervisor":
+            InfrastructureSupervisorNav() 
 
 
     # Always show the About page at the bottom of the list of links

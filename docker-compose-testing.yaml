@@ -20,7 +20,7 @@ services:
   db-test:
     env_file:
       - ./api/.env
-    image: mysql:9
+    image: mysql:latest
     container_name: mysql-db-test
     hostname: db
     volumes:
