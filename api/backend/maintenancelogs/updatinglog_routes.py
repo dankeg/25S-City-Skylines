@@ -4,7 +4,7 @@ from flask import jsonify
 from flask import make_response
 from flask import current_app
 from backend.db_connection import db
-from backend.ml_models.model01 import predict
+
 
 #------------------------------------------------------------
 # Create a new Blueprint object, which is a collection of 
@@ -52,7 +52,4 @@ def log_completed_maintenance():
     except Exception as e:
         db.get_db().rollback()
         return jsonify({'error': str(e)}), 500
-# List all active issues in a table (from GET /active-work-orders)
-# Each row has a “✔ Done” button next to it
-# When clicked, a small modal or inline text area appears to input a description
-# Submit the form → triggers POST
+

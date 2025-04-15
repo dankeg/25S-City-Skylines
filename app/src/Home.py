@@ -74,21 +74,19 @@ st.write('### HI! As which user would you like to log in?')
 #     st.session_state['first_name'] = 'SysAdmin'
 #     st.switch_page('pages/20_Admin_Home.py')
 
-if st.button('Act as Urban Planner', 
-            type = 'primary', 
-            use_container_width=True):
-    st.session_state['authenticated'] = True
-    st.session_state['role'] = 'urbanPlanner'
-    st.session_state['first_name'] = 'Cobb'
-    st.switch_page('pages/urbanPlannerHome.py')
-
-
+# if st.button('Act as Urban Planner', 
+#             type = 'primary', 
+#             use_container_width=True):
+#     st.session_state['authenticated'] = True
+#     st.session_state['role'] = 'urbanPlanner'
+#     st.session_state['first_name'] = 'Cobb'
+#     st.switch_page('pages/urbanPlannerHome.py')
 
 
 if st.button('Act as an Infrastructure Management Supervisor', 
             type = 'primary', 
             use_container_width=True):
     st.session_state['authenticated'] = True
-    st.session_state['role'] = 'supervisor'
+    st.session_state['role'] = 'InfrastructureSupervisor'
     st.session_state['first_name'] = 'Luis'
     st.switch_page('pages/infrastructure_home.py')
