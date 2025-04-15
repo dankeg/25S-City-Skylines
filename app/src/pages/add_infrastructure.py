@@ -39,7 +39,6 @@ if response.status_code == 200:
         st.stop()
 
     # Dropdown: display issue_type, return issue_id
-    st.write(issue_options)
     issue_map = {issue['issue_type']: issue['issue_id'] for issue in issue_options}
     selected_issue_name = st.selectbox("Choose Issue Type", list(issue_map.keys()))
     selected_issue_id = issue_map[selected_issue_name]

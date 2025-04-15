@@ -274,7 +274,7 @@ CREATE TABLE Issue_Log (
 );
 
 CREATE TABLE Maintenance_Log (
-    log_id INT PRIMARY KEY,
+    log_id INT PRIMARY KEY AUTO_INCREMENT,
     completed_date DATE,
     description TEXT,
     issue_id INT,
