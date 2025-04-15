@@ -32,24 +32,23 @@ def log_completed_maintenance():
         
         # Insert new maintenance log
         insert_query = '''
-            INSERT INTO CityPlanner.Maintenance_Log (description, completed_date, issue_id, log_id)
-            VALUES (%s, CURRENT_TIMESTAMP, %s, %s)
+            INSERT INTO CityPlanner.Maintenance_Log (description, completed_date, issue_id)
+            VALUES (%s, CURRENT_TIMESTAMP, %s)
         '''
-        cursor.execute(insert_query, (description, issue_id, log_id))
+        cursor.execute(insert_query, (description, issue_id))
 
         # Update issue status to 'Completed'
-        update_query = '''
-            UPDATE CityPlanner.Issue_Log
-            SET status = 'Completed'
-            WHERE issue_id = %s
-        '''
-        cursor.execute(update_query, (issue_id,))
+        # update_query = '''
+        #     UPDATE CityPlanner.Issue_Log
+        #     SET status = 'Completed'
+        #     WHERE issue_id = %s
+        # '''
+        # cursor.execute(update_query, (issue_id,))
         
-        db.get_db().commit()
+        # db.get_db().commit()
 
         return jsonify({'message': 'Maintenance job logged and issue marked as completed'}), 201
 
     except Exception as e:
         db.get_db().rollback()
         return jsonify({'error': str(e)}), 500
-

@@ -7,6 +7,7 @@ from backend.db_connection import db
 from backend.maintenancelogs.allactive_routes import allactive
 from backend.maintenancelogs.updatinglog_routes import updatinglog
 from backend.maintenancelogs.deletetype_routes import deletecompleted
+from backend.maintenancelogs.logissue_routes import getissuenames
 # from backend.simple.simple_routes import simple_routes
 # from backend.urbanPlanner.urbanPlanner import urbanPlanner_routes
 import os
@@ -47,6 +48,8 @@ def create_app():
     app.register_blueprint(allactive)
     app.register_blueprint(updatinglog)
     app.register_blueprint(deletecompleted)
+    app.register_blueprint(getissuenames)
+    # Blueprint for getting issue names
    # app.register_blueprint(customers,   url_prefix='/c')
     # app.register_blueprint(products,    url_prefix='/p')
     # app.register_blueprint(sustainability_analyst,    url_prefix='/s')
