@@ -18,19 +18,18 @@ def fetch_issue_names():
 
         # Use GROUP BY to get unique issue types, and MIN(issue_id) as a representative ID
         query = '''
-            SELECT MIN(il.issue_id) AS issue_id, il.issue_type AS issue_name
+            SELECT il.issue_id, il.issue_type
             FROM CityPlanner.Issue_Log il
-            WHERE il.status != 'Resolved'  -- Optional: exclude resolved issues
-            GROUP BY il.issue_type
+            
         '''
 
         cursor.execute(query)
         rows = cursor.fetchall()
 
-        column_names = [desc[0] for desc in cursor.description]
-        result = [dict(zip(column_names, row)) for row in rows]
+        # column_names = [desc[0] for desc in cursor.description]
+        # result = [dict(zip(column_names, row)) for row in rows]
 
-        return jsonify(result), 200
+        return jsonify(rows), 200
 
     except Exception as e:
         current_app.logger.error(f"Error fetching issue names: {e}")

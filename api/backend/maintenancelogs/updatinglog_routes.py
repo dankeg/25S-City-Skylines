@@ -22,7 +22,7 @@ def log_completed_maintenance():
     data = request.json
     description = data.get('description')
     issue_id = data.get('issue_id')
-    log_id = data.get('log_id')
+    #log_id = data.get('log_id')
 
     if not description or not issue_id:
         return jsonify({'error': 'Missing required fields'}), 400
@@ -37,15 +37,6 @@ def log_completed_maintenance():
         '''
         cursor.execute(insert_query, (description, issue_id))
 
-        # Update issue status to 'Completed'
-        # update_query = '''
-        #     UPDATE CityPlanner.Issue_Log
-        #     SET status = 'Completed'
-        #     WHERE issue_id = %s
-        # '''
-        # cursor.execute(update_query, (issue_id,))
-        
-        # db.get_db().commit()
 
         return jsonify({'message': 'Maintenance job logged and issue marked as completed'}), 201
 
