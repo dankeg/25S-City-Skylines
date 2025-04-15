@@ -84,3 +84,11 @@ if st.button('Act as Urban Planner',
 
 
 
+
+if st.button('Act as an Infrastructure Management Supervisor', 
+            type = 'primary', 
+            use_container_width=True):
+    st.session_state['authenticated'] = True
+    st.session_state['role'] = 'supervisor'
+    st.session_state['first_name'] = 'Luis'
+    st.switch_page('pages/infrastructure_home.py')

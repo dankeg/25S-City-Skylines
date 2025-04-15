@@ -11,7 +11,7 @@ services:
 
   api-test:
     build: ./api
-    container_name: web-api-test
+    container_namgite: web-api-test
     hostname: web-api
     volumes: ["./api:/apicode"]
     ports:
