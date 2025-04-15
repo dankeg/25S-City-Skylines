@@ -76,17 +76,18 @@ def AboutPageNav():
 ### ------------------------- infrastructure managmenst supervisor -------------------------
 def InfrastructureSupervisorNav():
     st.sidebar.page_link(
-        "pages/infrastructure_home.py", label="Infrastructure Supervisor Home"
-    )
-    st.sidebar.page_link(
-        "pages/add_infrastructure.py", label="Loging Work Order"
-    )
-    st.sidebar.page_link(
-        "pages/delete_infrastructure.py", label="Deleting Completed Order"
+        "pages/infrastructure_home.py", label="Infrastructure Supervisor Home", icon="🛠️"
     )
     st.sidebar.page_link(
         "pages/infrastructure_map.py", label="View Active Work Orders", icon="🗺️"
     )
+    st.sidebar.page_link(
+        "pages/add_infrastructure.py", label="Logging Work Order", icon="📝"
+    )
+    st.sidebar.page_link(
+        "pages/delete_infrastructure.py", label="Deleting Completed Order", icon="✅"
+    )
+    
 
 
 # --------------------------------Links Function -----------------------------------------------

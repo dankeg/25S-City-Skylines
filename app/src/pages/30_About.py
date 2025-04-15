@@ -46,7 +46,7 @@ def about_page():
     roles = {
         "City Planners": "Visualize development impacts and optimize zoning",
         "Sustainability Analysts": "Track emissions and green initiatives",
-        "Infrastructure Managers": "Monitor assets and predict maintenance needs",
+        "Infrastructure Managers": "Monitor assets and resolve maintenance needs",
         "System Administrators": "Configure permissions and data integrations"
     }
     

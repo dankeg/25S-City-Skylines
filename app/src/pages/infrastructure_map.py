@@ -76,6 +76,22 @@ def main():
         initial_view_state=view_state,
         layers=[layer]
     ))
+
+        # Legend for dot colors
+    st.markdown("""
+    <div style='padding: 10px; border: 1px solid #ddd; border-radius: 5px; width: fit-content; background-color: #f9f9f9'>
+        <strong>🗝️ Legend:</strong><br>
+        <div style='margin-bottom: 5px;'>
+            <span style='display: inline-block; width: 15px; height: 15px; background-color: rgb(255, 140, 0); margin-right: 5px;'></span>
+            Open Work Order
+        </div>
+        <div>
+            <span style='display: inline-block; width: 15px; height: 15px; background-color: rgb(0, 191, 255); margin-right: 5px;'></span>
+            In Progress Work Order
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
         
     st.subheader("active work orders Table")
     st.dataframe(df[['crew_name', 'status', 'description', 'priority', 'issue_type']])
