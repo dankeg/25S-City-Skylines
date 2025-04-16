@@ -1,4 +1,5 @@
 import logging
+import numpy as np
 import requests
 import pandas as pd
 import streamlit as st
@@ -20,18 +21,23 @@ st.markdown("### 🛠️ Monitoring Configurations")
 configs = requests.get("http://web-api:4000/sys/monitoring-config").json()
 configs_df = pd.DataFrame(configs)
 
-
 def on_config_change():
     edited_data = st.session_state.config_table
 
     if edited_data.get("edited_rows"):
         for row_index, changes in edited_data["edited_rows"].items():
             row_index = int(row_index)
-            updated = configs_df.iloc[row_index].copy()
+
             for col, new_value in changes.items():
-                updated[col] = new_value
-            row_dict = updated.to_dict()
-            config_id = row_dict["config_id"]
+                configs_df.at[row_index, col] = new_value
+
+            row_dict = configs_df.iloc[row_index].to_dict()
+
+            for key, value in row_dict.items():
+                if isinstance(value, float) and math.isnan(value):
+                    row_dict[key] = None
+
+            config_id = row_dict.get("config_id")
             requests.put(
                 f"http://web-api:4000/sys/monitoring-config/{config_id}", json=row_dict
             )
@@ -40,7 +46,7 @@ def on_config_change():
         requests.post("http://web-api:4000/sys/monitoring-config", json=row)
 
     for idx in edited_data.get("deleted_rows", []):
-        config_id = configs_df.iloc[int(idx)]["id"]
+        config_id = configs_df.iloc[int(idx)]["config_id"]
         requests.delete(f"http://web-api:4000/sys/monitoring-config/{config_id}")
 
 
@@ -51,6 +57,7 @@ st.data_editor(
     use_container_width=True,
     on_change=on_config_change,
     hide_index=True,
+    column_order=['importance', 'job', 'monitor_condition', 'monitor_interval']
 )
 
 st.divider()

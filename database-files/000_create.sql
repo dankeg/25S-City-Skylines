@@ -201,7 +201,7 @@ CREATE TABLE Citizen_Report (
 );
 
 CREATE TABLE Monitoring_Config (
-    config_id INT PRIMARY KEY,
+    config_id INT PRIMARY KEY AUTO_INCREMENT,
     job VARCHAR(255),
     importance ENUM('low', 'medium', 'high') NOT NULL,
     monitor_condition TEXT,
@@ -226,7 +226,7 @@ CREATE TABLE Config_Incident (
 );
 
 CREATE TABLE User_Tickets (
-    ticket_id INT PRIMARY KEY,
+    ticket_id INT PRIMARY KEY AUTO_INCREMENT,
     status ENUM('open', 'in-progress', 'closed') NOT NULL,
     title VARCHAR(255) NOT NULL,
     description TEXT,

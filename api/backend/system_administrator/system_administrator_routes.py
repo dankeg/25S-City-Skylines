@@ -13,7 +13,7 @@ from backend.db_connection import db
 system_administrator = Blueprint("system_administrator", __name__)
 
 @system_administrator.route("/users/<start_date>/<end_date>", methods=["GET"])
-def get_users(start_date, end_date):
+def get_user_logins(start_date, end_date):
     cursor = db.get_db().cursor()
 
     cursor.execute(
@@ -22,6 +22,22 @@ def get_users(start_date, end_date):
         WHERE last_login BETWEEN %s AND %s
         """,
         (start_date, end_date),
+    )
+
+    theData = cursor.fetchall()
+
+    the_response = make_response(jsonify(theData))
+    the_response.status_code = 200
+    return the_response
+
+@system_administrator.route("/users", methods=["GET"])
+def get_users():
+    cursor = db.get_db().cursor()
+
+    cursor.execute(
+        """
+        SELECT * FROM Users
+        """,
     )
 
     theData = cursor.fetchall()
