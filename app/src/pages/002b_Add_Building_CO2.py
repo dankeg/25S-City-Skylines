@@ -64,6 +64,6 @@ with st.form("add_emission"):
             if post_res.status_code == 201:
                 st.success("CO₂ emission entry added successfully!")
             else:
-                st.error(f"Error: {post_res.status_code} - {post_res.text}")
+                st.error(f"Please include valid locations and buildings!")
         except Exception as e:
-            st.error(f"Could not reach API: {e}")
+            st.error(f"Please include valid locations and buildings!: {e}")

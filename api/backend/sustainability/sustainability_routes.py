@@ -26,23 +26,28 @@ def handle_co2_building_emissions():
         return response
 
     elif request.method == 'POST':
-        data = request.get_json()
-        cursor.execute('''
-            INSERT INTO CityPlanner.CO2_Emissions 
-            (source, emission_level, timestamp, location_id, building_id)
-            VALUES (%s, %s, %s, %s, %s)
-        ''', (
-            data.get('source', 'building_meter'),
-            data.get('emission_level'),
-            data.get('timestamp'),             
-            data.get('location_id'),
-            data.get('building_id')            
-        ))
+        try:
+            data = request.get_json()
+            cursor.execute('''
+                INSERT INTO CityPlanner.CO2_Emissions 
+                (source, emission_level, timestamp, location_id, building_id)
+                VALUES (%s, %s, %s, %s, %s)
+            ''', (
+                data.get('source', 'building_meter'),
+                data.get('emission_level'),
+                data.get('timestamp'),             
+                data.get('location_id'),
+                data.get('building_id')            
+            ))
 
-        db.get_db().commit()
-        response = make_response(jsonify({"message": "CO₂ building emission added successfully"}))
-        response.status_code = 201
-        return response
+            db.get_db().commit()
+            response = make_response(jsonify({"message": "CO₂ building emission added successfully"}))
+            response.status_code = 201
+            return response
+        except:
+            response = make_response(jsonify({"message": "Please include valid buildings and locations!"}))
+            response.status_code = 400
+            return response
 
 @sustainability_analyst.route('/ev-air-dashboard', methods=['GET'])
 def get_ev_air_data():

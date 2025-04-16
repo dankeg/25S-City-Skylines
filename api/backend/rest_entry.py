@@ -8,12 +8,10 @@ from backend.db_connection import db
 # from backend.products.products_routes import products
 from backend.sustainability.sustainability_routes import sustainability_analyst
 from backend.urbanPlanner.urbanPlanner import urbanPlanner_routes
+from backend.infra_management.infra_management import infra
 # from backend.simple.simple_routes import simple_routes
 # from backend.sustainability.sustainability_routes import sustainability_analyst
-from backend.maintenancelogs.allactive_routes import allactive
-from backend.maintenancelogs.updatinglog_routes import updatinglog
-from backend.maintenancelogs.deletetype_routes import deletecompleted
-from backend.maintenancelogs.logissue_routes import getissuenames
+
 # from backend.simple.simple_routes import simple_routes
 # from backend.urbanPlanner.urbanPlanner import urbanPlanner_routes
 import os
@@ -56,16 +54,5 @@ def create_app():
     app.register_blueprint(sustainability_analyst,    url_prefix='/s')
     app.register_blueprint(urbanPlanner_routes)
     app.register_blueprint(system_administrator, url_prefix="/sys")
-    # app.register_blueprint(simple_routes)
-    app.register_blueprint(allactive)
-    app.register_blueprint(updatinglog)
-    app.register_blueprint(deletecompleted)
-    app.register_blueprint(getissuenames)
-    # Blueprint for getting issue names
-   # app.register_blueprint(customers,   url_prefix='/c')
-    # app.register_blueprint(products,    url_prefix='/p')
-    # app.register_blueprint(sustainability_analyst,    url_prefix='/s')
-    # app.register_blueprint(urbanPlanner_routes)
-
-    # Don't forget to return the app objects
+    app.register_blueprint(infra)
     return app
