@@ -221,8 +221,10 @@ CREATE TABLE Config_Incident (
     incident_id INT,
     service_uptime FLOAT,
     PRIMARY KEY (config_id, incident_id),
-    FOREIGN KEY (config_id) REFERENCES Monitoring_Config(config_id),
+    FOREIGN KEY (config_id) REFERENCES Monitoring_Config(config_id)
+        ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (incident_id) REFERENCES Incidents(incident_id)
+        ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE User_Tickets (
