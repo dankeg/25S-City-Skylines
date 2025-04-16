@@ -8,15 +8,12 @@ from streamlit_extras.app_logo import add_logo
 from datetime import datetime
 from modules.nav import SideBarLinks
 
-# Sidebar nav
 SideBarLinks()
 
-# Header
 st.header("💧 Water Sensor Status Overview")
 st.write(f"### Hi, {st.session_state.get('first_name', 'User')}.")
 api_url_get = "http://web-api-test:4000/s/water-sensors"
 
-# --- Load and style data ---
 try:
     response = requests.get(api_url_get)
     response.raise_for_status()
@@ -40,7 +37,6 @@ except Exception as e:
     st.error(f"Error loading sensor data: {e}")
     st.stop()
 
-# --- Update Sensor Status Form ---
 st.subheader("🔧 Update Sensor Status")
 
 with st.form("update_sensor"):
@@ -50,7 +46,6 @@ with st.form("update_sensor"):
         sensor_id = st.selectbox("Sensor ID", df['sensor_id'].unique())
         current_status = df[df['sensor_id'] == sensor_id]['status'].values[0]
 
-        # status color
         if current_status.lower() == "inactive":
             color = "#e6b800"
         elif current_status.lower() == "decommissioned":

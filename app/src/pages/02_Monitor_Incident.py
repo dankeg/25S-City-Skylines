@@ -9,7 +9,6 @@ import math
 from datetime import datetime
 from modules.nav import SideBarLinks
 
-# Sidebar nav
 SideBarLinks()
 
 st.title("Monitoring Dashboard")
@@ -18,7 +17,6 @@ st.subheader(f"Welcome, {st.session_state['first_name']}!")
 st.divider()
 st.markdown("### 🛠️ Monitoring Configurations")
 
-# Mock fetch
 configs = requests.get("http://web-api:4000/sys/monitoring-config").json()
 configs_df = pd.DataFrame(configs)
 

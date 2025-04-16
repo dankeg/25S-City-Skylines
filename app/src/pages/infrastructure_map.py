@@ -21,7 +21,7 @@ def get_work_orders_data():
 
 def main():
     st.title("Active Work Orders Map")
-    st.markdown("Interactive map of all active work orders that need to be adressed")
+    st.markdown("Interactive map of all active work orders that need to be addressed")
         
     work_orders = get_work_orders_data()
     
@@ -32,19 +32,6 @@ def main():
     df = pd.DataFrame(work_orders)
     df['latitude'] = pd.to_numeric(df['latitude'], errors='coerce')
     df['longitude'] = pd.to_numeric(df['longitude'], errors='coerce')
-
-
-    """
-     "crew_id": 3,
-    "crew_name": "Capital Clean-Up Services",
-    "description": "Request for revitalization of a neglected neighborhood.",
-    "issue_id": 18,
-    "issue_type": "Unmaintained parks and gardens",
-    "latitude": "39.73400000",
-    "longitude": "-105.02590000",
-    "priority": "Critical",
-    "status": "Open"
-    """
         
     status_colors = {
         'Open': [255, 140, 0],  
@@ -77,7 +64,6 @@ def main():
         layers=[layer]
     ))
 
-        # Legend for dot colors
     st.markdown("""
     <div style='padding: 10px; border: 1px solid #ddd; border-radius: 5px; width: fit-content; background-color: #f9f9f9'>
         <strong>🗝️ Legend:</strong><br>
@@ -93,7 +79,7 @@ def main():
     """, unsafe_allow_html=True)
 
         
-    st.subheader("active work orders Table")
+    st.subheader("Active Work Orders Table")
     st.dataframe(df[['crew_name', 'status', 'description', 'priority', 'issue_type']])
 
 if __name__ == "__main__":

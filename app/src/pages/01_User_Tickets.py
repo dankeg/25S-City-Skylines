@@ -7,14 +7,11 @@ import matplotlib.pyplot as plt
 import math
 from modules.nav import SideBarLinks
 
-# Sidebar nav
 SideBarLinks()
 
-# Header
 st.title("User Tickets and Requests")
 st.subheader(f"Welcome, {st.session_state['first_name']}!")
 
-# Fetch ticket data
 results = requests.get("http://web-api:4000/sys/user-tickets").json()
 df = pd.DataFrame(results)
 
@@ -22,7 +19,6 @@ if "original_user_tickets" not in st.session_state:
     st.session_state.original_user_tickets = df.copy()
 
 
-# ------------------------ Data Handling Callback ------------------------ #
 def on_modification_callback():
     edited_data = st.session_state.user_tickets
 
@@ -58,7 +54,6 @@ def on_modification_callback():
             requests.delete(f"http://web-api:4000/sys/user-tickets/{ticket_id}")
 
 
-# ------------------------ Ticket Table ------------------------ #
 st.divider()
 st.markdown("### Current Tickets")
 
@@ -81,7 +76,6 @@ st.data_editor(
     hide_index=True,
 )
 
-# ------------------------ Status Pie Chart ------------------------ #
 st.divider()
 st.markdown("### 📊 Ticket Status Overview")
 

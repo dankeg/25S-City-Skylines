@@ -8,15 +8,12 @@ from streamlit_extras.app_logo import add_logo
 from datetime import datetime
 from modules.nav import SideBarLinks
 
-# Sidebar nav
 SideBarLinks()
 
-# Header
 st.header("CO₂ Emissions from Building Sources")
 st.write(f"### Hi, {st.session_state.get('first_name', 'User')}.")
 api_url = "http://web-api-test:4000/s/co2-building-emissions"
 
-# --- Load Emissions Data ---
 try:
     response = requests.get(api_url)
     response.raise_for_status()
@@ -32,7 +29,6 @@ except Exception as e:
     st.error(f"Error loading emissions data: {e}")
     st.stop()
 
-# --- Add New Emission Entry ---
 st.subheader("➕ Add New CO₂ Emission Data for A Building!")
 
 with st.form("add_emission"):

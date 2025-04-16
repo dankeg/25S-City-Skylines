@@ -51,7 +51,7 @@ CREATE TABLE Energy_Consumption_Alert (
 );
 
 CREATE TABLE CO2_Emissions (
-    emission_id INT PRIMARY KEY,
+    emission_id INT PRIMARY KEY AUTO_INCREMENT,
     source VARCHAR(100) NOT NULL,
     emission_level DECIMAL NOT NULL,
     timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,

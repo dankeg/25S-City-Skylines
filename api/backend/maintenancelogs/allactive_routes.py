@@ -4,15 +4,9 @@ from flask import jsonify
 from flask import make_response
 from flask import current_app
 from backend.db_connection import db
-# from backend.ml_models.model01 import predict
 
-#------------------------------------------------------------
-# Create a new Blueprint object, which is a collection of 
-# routes.
 allactive = Blueprint('allactive', __name__)
  
-#------------------------------------------------------------
-# Get all active maintenance logs from the system
 @allactive.route('/active-work-orders', methods=['GET'])
 def get_active_work_orders():
     current_app.logger.info('GET /active-work-orders route hit')

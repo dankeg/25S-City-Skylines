@@ -7,14 +7,11 @@ import matplotlib.pyplot as plt
 import math
 from modules.nav import SideBarLinks
 
-# Sidebar navigation
 SideBarLinks()
 
-# Header
 st.title("User Metrics")
 st.subheader(f"Welcome, {st.session_state['first_name']}!")
 
-# Date selection
 start_date = st.date_input("Select Start Date", key="login_start_date")
 end_date = st.date_input("Select End Date", key="login_end_date")
 

@@ -6,7 +6,6 @@ from flask import current_app
 from backend.db_connection import db
 
 
-# Blueprint for getting issue names
 getissuenames = Blueprint('getissuenames', __name__)
 
 
@@ -16,7 +15,6 @@ def fetch_issue_names():
     try:
         cursor = db.get_db().cursor()
 
-        # Use GROUP BY to get unique issue types, and MIN(issue_id) as a representative ID
         query = '''
             SELECT il.issue_id, il.issue_type
             FROM CityPlanner.Issue_Log il
@@ -25,9 +23,6 @@ def fetch_issue_names():
 
         cursor.execute(query)
         rows = cursor.fetchall()
-
-        # column_names = [desc[0] for desc in cursor.description]
-        # result = [dict(zip(column_names, row)) for row in rows]
 
         return jsonify(rows), 200
 

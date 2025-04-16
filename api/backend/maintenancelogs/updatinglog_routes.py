@@ -5,16 +5,9 @@ from flask import make_response
 from flask import current_app
 from backend.db_connection import db
 
-
-#------------------------------------------------------------
-# Create a new Blueprint object, which is a collection of 
-# routes.
 updatinglog = Blueprint('updatinglog', __name__)
  
-#------------------------------------------------------------
 
-
-# udating completed job
 @updatinglog.route('/updatinglog', methods=['POST'])
 def log_completed_maintenance():
     current_app.logger.info('POST /maintenance-logs')
@@ -22,15 +15,13 @@ def log_completed_maintenance():
     data = request.json
     description = data.get('description')
     issue_id = data.get('issue_id')
-    #log_id = data.get('log_id')
-
+    
     if not description or not issue_id:
         return jsonify({'error': 'Missing required fields'}), 400
 
     try:
         cursor = db.get_db().cursor()
         
-        # Insert new maintenance log
         insert_query = '''
             INSERT INTO CityPlanner.Maintenance_Log (description, completed_date, issue_id)
             VALUES (%s, CURRENT_TIMESTAMP, %s)

@@ -71,7 +71,7 @@ if st.button('Act as Cobb, an Urban Planner',
     logger.info("Logging in as Urban Planner Persona")
     st.switch_page('pages/urbanPlannerHome.py')
 
-if st.button('Act as an Infrastructure Management Supervisor', 
+if st.button('Act as Luis, Infrastructure Management Supervisor', 
             type = 'primary', 
             use_container_width=True):
     st.session_state['authenticated'] = True

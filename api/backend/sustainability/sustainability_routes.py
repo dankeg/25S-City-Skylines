@@ -5,14 +5,8 @@ from flask import make_response
 from flask import current_app
 from backend.db_connection import db
 
-#------------------------------------------------------------
-# Create a new Blueprint object, which is a collection of 
-# routes.
 sustainability_analyst = Blueprint('sustainability_routes', __name__)
-
-#------------------------------------------------------------
-# User Story 1: GET all CO2 Emissions data along with Building emissions data 
-# AND POST new building energy consumption data 
+ 
 @sustainability_analyst.route('/co2-building-emissions', methods=['GET', 'POST'])
 def handle_co2_building_emissions():
     cursor = db.get_db().cursor()
@@ -50,8 +44,6 @@ def handle_co2_building_emissions():
         response.status_code = 201
         return response
 
-#-----------------------------------------------------------
-# User Story 2: GET EV and Air Quality data from the system
 @sustainability_analyst.route('/ev-air-dashboard', methods=['GET'])
 def get_ev_air_data():
     cursor = db.get_db().cursor()
@@ -69,8 +61,6 @@ def get_ev_air_data():
     return response
 
     
-#-----------------------------------------------------------
-# User Story 6: GET all sensors data and their status
 @sustainability_analyst.route('/water-sensors', methods=['GET'])
 def get_water_sensors():
     cursor = db.get_db().cursor()
@@ -83,7 +73,6 @@ def get_water_sensors():
     return jsonify(data), 200
 
 
-# PUT to update status of a sensor
 @sustainability_analyst.route('/water-sensor-status', methods=['PUT'])
 def update_water_sensor_status():
     cursor = db.get_db().cursor()

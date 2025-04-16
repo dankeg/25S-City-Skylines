@@ -34,13 +34,6 @@ def main():
 
     st.subheader("Delete a Infrastructure Type")
 
-
-    """
-
-     SELECT type_id, issue_id, type, location_id, priority 
-            FROM CityPlanner.Infrastructure_Type
-    
-    """
     for index, row in df.iterrows():
         col1, col2, col3, col4, col5, col6 = st.columns([3, 2, 2, 2, 2, 2])
         
@@ -59,9 +52,9 @@ def main():
                 try:
                     response = requests.delete(f"{ALL_INFR_DEL_ENDPOINT}/{row['issue_id']}")
                     if response.status_code == 200:
-                        st.success(f"Infrascture Deleted '{row['type_id']}' successfully.")
+                        st.success(f"Infrastructure Deleted '{row['type_id']}' successfully.")
                     else:
-                        st.error(f"Failed to delete Infrascture types '{row['type_id']}'.")
+                        st.error(f"Failed to delete Infrastructure types '{row['type_id']}'.")
                 except requests.exceptions.RequestException as e:
                     st.error(f"Error during deletion: {e}")
 
