@@ -28,7 +28,7 @@ cd [repository-directory]
 ```
 
 ### Environment Setup
-1. Create a `.env` file in the root directory with the following content:
+1. Create a `.env` file in the root of the api directory with the following content:
 ```
 # Database Configuration
 DB_USER=root
